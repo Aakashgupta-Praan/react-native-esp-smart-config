@@ -92,6 +92,7 @@ export default function App() {
 
   const handleStart = () => {
     setSending(true);
+    console.log('starting smartConfig', apBssid, apSsid, apPass)
     start({
       bssid: apBssid,
       ssid: apSsid,
@@ -100,7 +101,7 @@ export default function App() {
       .then((result) => {
         console.log('response from smartConfig: ', result);
         if (result && result.length > 0) {
-          const firstDevice = result[0];
+          const firstDevice = result[0]; 
           Alert.alert(
             'Found',
             `Handshaked with device- bssid: ${firstDevice?.bssid}, ip: ${firstDevice?.ipv4}`
@@ -147,7 +148,7 @@ export default function App() {
             <Button title="Start" onPress={handleStart} />
           )}
         </View>
-        <Text>{wifiState && JSON.stringify(wifiState)}</Text>
+        <Text style={styles.input}>{wifiState && JSON.stringify(wifiState)}</Text>
       </View>
     </View>
   );
@@ -176,6 +177,7 @@ const styles = StyleSheet.create({
     borderColor: '#cccccc',
     paddingHorizontal: 16,
     width: '80%',
+    color: '#000000',
   },
   button: {
     width: 150,
